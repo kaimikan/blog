@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Post from "./Post";
+import PostsContext from "../context/posts.context";
 
 const PostList = () => {
-  const samplePosts = [
+  const { postsState } = useContext(PostsContext);
+  /* const samplePosts = [
     {
       title: "First Note",
       body: "Body of the first note.",
@@ -15,9 +17,11 @@ const PostList = () => {
       title: "Third Note",
       body: "Body of the third note.",
     },
-  ];
+  ]; */
 
-  return samplePosts.map((post) => <Post key={post.title} post={post} />);
+  return /* samplePosts */ postsState.map((post) => (
+    <Post key={post.title} post={post} />
+  ));
 };
 
 export { PostList as default };
