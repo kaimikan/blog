@@ -2,11 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import BlogApp from "./components/BlogApp";
+import AppRouter from "./routers/AppRouter";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BlogApp />
+    <AppRouter />
   </React.StrictMode>,
   document.getElementById("root")
 );

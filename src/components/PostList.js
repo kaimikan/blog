@@ -19,9 +19,15 @@ const PostList = () => {
     },
   ]; */
 
-  return /* samplePosts */ postsState.map((post) => (
-    <Post key={post.title} post={post} />
-  ));
+  console.log("POST LIST: ", postsState.length);
+
+  if (postsState.length > 0) {
+    return /* samplePosts */ postsState.map((post) => (
+      <Post key={post.title} post={post} />
+    ));
+  } else {
+    return <div>No posts to show.</div>;
+  }
 };
 
 export { PostList as default };
