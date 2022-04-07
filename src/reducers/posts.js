@@ -3,9 +3,20 @@ const postsReducer = (state, action) => {
     case "POPULATE_POSTS":
       return action.posts;
     case "ADD_POST":
-      return [...state, { title: action.title, body: action.body }];
+      return [
+        ...state,
+        { id: action.id, title: action.title, body: action.body },
+      ];
+    case "EDIT_POST":
+      return state.map((post) => {
+        if (post.id === action.id) {
+          return { ...post, ...action.updates };
+        } else {
+          return post;
+        }
+      });
     case "REMOVE_POST":
-      return state.filter((post) => post.title !== action.title);
+      return state.filter((post) => post.id !== action.id);
     default:
       return state;
   }

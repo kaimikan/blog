@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 const useLocalStorage = ({ postsState, postsDispatch }) => {
-  // BUG local storage stopped working after this transition and I am not sure why
-  // i will leave it like this for now since it should be replaced with firebase soon enough
   useEffect(() => {
     console.log("Application loaded, local storage items added");
     const postsLocalData = JSON.parse(

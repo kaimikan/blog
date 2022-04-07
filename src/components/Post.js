@@ -1,8 +1,11 @@
 import React, { useContext } from "react";
 import PostsContext from "../context/posts.context";
+import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
   const { postsDispatch } = useContext(PostsContext);
+
+  console.log("POST OBJECT: ", post);
 
   return (
     <>
@@ -12,13 +15,18 @@ const Post = ({ post }) => {
         onClick={() =>
           postsDispatch({
             type: "REMOVE_POST",
-            title: post.title,
+            id: post.id,
           })
         }
       >
         Remove
       </button>
-      <button>Edit</button>
+      <Link
+        to={"/edit/" + post.id}
+        state={{ id: post.id, title: post.title, body: post.body }}
+      >
+        Edit
+      </Link>
     </>
   );
 };
