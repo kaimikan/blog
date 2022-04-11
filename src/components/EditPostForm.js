@@ -3,6 +3,7 @@ import PostsContext from "../context/posts.context";
 import DataContext from "../context/data.context";
 import PostForm from "./PostForm";
 import { useLocation } from "react-router-dom";
+import { editPost } from "../actions/posts";
 
 const EditPostForm = (props) => {
   const { postsDispatch } = useContext(PostsContext);
@@ -18,16 +19,9 @@ const EditPostForm = (props) => {
   };
   console.log("PASSING", post);
 
-  const editPost = (e) => {
+  const editPostEvent = (e) => {
     e.preventDefault();
-    postsDispatch({
-      type: "EDIT_POST",
-      id: post.id,
-      updates: {
-        title: title,
-        body: body,
-      },
-    });
+    postsDispatch(editPost(post.id, title, body));
     setTitle("");
     setBody("");
   };
@@ -44,7 +38,7 @@ const EditPostForm = (props) => {
           setBody,
         }}
       >
-        <PostForm onSubmitMethod={editPost} />
+        <PostForm onSubmitMethod={editPostEvent} />
       </DataContext.Provider>
     </>
   );

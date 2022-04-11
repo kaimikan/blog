@@ -1,21 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import PostsContext from "../context/posts.context";
 import DataContext from "../context/data.context";
 import PostForm from "./PostForm";
-import { v4 as uuidv4 } from "uuid";
+import { addPost } from "../actions/posts";
 
 const AddPostForm = () => {
   const { postsDispatch } = useContext(PostsContext);
   const { title, setTitle, body, setBody } = useContext(DataContext);
 
-  const addPost = (e) => {
+  const addPostEvent = (e) => {
     e.preventDefault();
-    postsDispatch({
-      type: "ADD_POST",
-      id: uuidv4(),
-      title: title,
-      body: body,
-    });
+    postsDispatch(addPost(title, body));
     setTitle("");
     setBody("");
   };
@@ -24,7 +19,7 @@ const AddPostForm = () => {
     <>
       <p>Write Post:</p>
       <DataContext.Provider value={{ title, setTitle, body, setBody }}>
-        <PostForm onSubmitMethod={addPost} />
+        <PostForm onSubmitMethod={addPostEvent} />
       </DataContext.Provider>
     </>
   );
