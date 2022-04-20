@@ -19,22 +19,24 @@ const PostForm = ({ onSubmitMethod }) => {
   }, []);
 
   return (
-    <form onSubmit={onSubmitMethod}>
+    <form onSubmit={onSubmitMethod} className="form">
       <input
         value={title}
+        className="text-input"
         placeholder={"Title"}
         onChange={(e) => {
           setTitle(e.target.value);
         }}
       />
-      <input
+      <textarea
         value={body}
+        className="textarea"
         placeholder={"Body"}
         onChange={(e) => {
           setBody(e.target.value);
         }}
       />
-      <button>Save</button>
+      <button className="button">Save</button>
     </form>
   );
 };

@@ -17,7 +17,11 @@ const AddPostForm = () => {
 
   return (
     <>
-      <p>Write Post:</p>
+      <div className="page-header">
+        <div className="content-container">
+          <h2 className="page-header__title">Write Post</h2>
+        </div>
+      </div>
       <DataContext.Provider value={{ title, setTitle, body, setBody }}>
         <PostForm onSubmitMethod={addPostEvent} />
       </DataContext.Provider>

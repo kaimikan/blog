@@ -28,7 +28,11 @@ const EditPostForm = (props) => {
 
   return (
     <>
-      <p>Edit Post:</p>
+      <div className="page-header">
+        <div className="content-container">
+          <h2 className="page-header__title">Edit Post</h2>
+        </div>
+      </div>
       <DataContext.Provider
         value={{
           title: title,

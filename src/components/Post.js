@@ -9,17 +9,26 @@ const Post = ({ post }) => {
   console.log("POST OBJECT: ", post);
 
   return (
-    <>
-      <h3>{post.title}</h3>
-      <p>{post.body}</p>
-      <button onClick={() => postsDispatch(removePost(post.id))}>Remove</button>
-      <Link
-        to={"/edit/" + post.id}
-        state={{ id: post.id, title: post.title, body: post.body }}
-      >
-        Edit
-      </Link>
-    </>
+    <div className="list-item">
+      <div>
+        <h3 className="list-item__title">{post.title}</h3>
+        <span className="list-item__subtitle">{post.body}</span>
+      </div>
+      <div className="list-item__data">
+        <button
+          className="button button--secondary"
+          onClick={() => postsDispatch(removePost(post.id))}
+        >
+          Remove
+        </button>
+        <Link
+          to={"/edit/" + post.id}
+          state={{ id: post.id, title: post.title, body: post.body }}
+        >
+          <button className="button button--secondary-2">Edit</button>
+        </Link>
+      </div>
+    </div>
   );
 };
 
