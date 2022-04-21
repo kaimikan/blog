@@ -5,6 +5,7 @@ import AddPostForm from "../components/AddPostForm";
 import EditPostForm from "../components/EditPostForm";
 import PostsProvider from "../providers/posts.provider";
 import DataProvider from "../providers/data.provider";
+import PostPage from "../components/PostPage";
 import Header from "../components/Header";
 
 const AppRouter = () => {
@@ -17,6 +18,7 @@ const AppRouter = () => {
             <Route path="/" element={<BlogApp />} exact={true} />
             <Route path="/add" element={<AddPostForm />} />
             <Route path="/edit/:id" element={<EditPostForm />} exact={false} />
+            <Route path="/post/:id" element={<PostPage />} exact={false} />
           </Routes>
         </BrowserRouter>
       </DataProvider>

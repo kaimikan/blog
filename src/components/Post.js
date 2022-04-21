@@ -11,10 +11,18 @@ const Post = ({ post }) => {
   return (
     <div className="list-item">
       <div>
-        <h3 className="list-item__title">{post.title}</h3>
+        <h3 className="list-item__title">
+          <Link
+            className="link"
+            to={"/post/" + post.id}
+            state={{ id: post.id, title: post.title, body: post.body }}
+          >
+            {post.title}
+          </Link>
+        </h3>
         <span className="list-item__subtitle">{post.body}</span>
       </div>
-      <div className="list-item__data">
+      {/* <div className="list-item__actions">
         <button
           className="button button--secondary"
           onClick={() => postsDispatch(removePost(post.id))}
@@ -27,7 +35,7 @@ const Post = ({ post }) => {
         >
           <button className="button button--secondary-2">Edit</button>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };
