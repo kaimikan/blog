@@ -7,7 +7,11 @@ const SubHeader = () => {
       <div className="page-header">
         <div className="content-container">
           <div className="page-header__content">
-            <h2 className="page-header__title">Type Your Mind Out</h2>
+            <h2 className="page-header__title">
+              <Link to="/storm" className="button button--secondary-2">
+                Type Your Mind Out
+              </Link>
+            </h2>
             <div className="page-header__actions">
               <Link to="/add" className="button">
                 Add Post
