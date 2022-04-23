@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import PostsContext from "../context/posts.context";
 import DataContext from "../context/data.context";
 import PostForm from "./PostForm";
@@ -7,12 +8,14 @@ import { addPost } from "../actions/posts";
 const AddPostForm = () => {
   const { postsDispatch } = useContext(PostsContext);
   const { title, setTitle, body, setBody } = useContext(DataContext);
+  const navigate = useNavigate();
 
   const addPostEvent = (e) => {
     e.preventDefault();
     postsDispatch(addPost(title, body));
     setTitle("");
     setBody("");
+    navigate("/");
   };
 
   return (

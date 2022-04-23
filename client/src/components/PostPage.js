@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import PostsContext from "../context/posts.context";
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { removePost } from "../actions/posts";
 
 const PostPage = () => {
   const { postsDispatch } = useContext(PostsContext);
-
+  const navigate = useNavigate();
   const location = useLocation();
   console.log(location, " useLocation Hook");
   const post = {
@@ -26,7 +25,10 @@ const PostPage = () => {
               <div className="page-header__actions">
                 <button
                   className="button button--secondary"
-                  onClick={() => postsDispatch(removePost(post.id))}
+                  onClick={() => {
+                    postsDispatch(removePost(post.id));
+                    navigate("/");
+                  }}
                 >
                   Remove
                 </button>

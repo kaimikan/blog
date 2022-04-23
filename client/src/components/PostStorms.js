@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import PostsContext from "../context/posts.context";
 import { addPost } from "../actions/posts";
 
 function PostStorms({ socket }) {
   const [messages, setMessages] = useState({});
   const { postsDispatch } = useContext(PostsContext);
+  const navigate = useNavigate();
 
   const addPostEvent = (e) => {
     e.preventDefault();
@@ -17,6 +19,7 @@ function PostStorms({ socket }) {
     console.log(postTitle, postBody);
     postsDispatch(addPost(postTitle, postBody));
     socket.emit("deleteMessages");
+    navigate("/");
   };
 
   useEffect(() => {

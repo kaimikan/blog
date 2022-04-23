@@ -2,12 +2,13 @@ import React, { useContext } from "react";
 import PostsContext from "../context/posts.context";
 import DataContext from "../context/data.context";
 import PostForm from "./PostForm";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { editPost } from "../actions/posts";
 
 const EditPostForm = (props) => {
   const { postsDispatch } = useContext(PostsContext);
   const { title, setTitle, body, setBody } = useContext(DataContext);
+  const navigate = useNavigate();
 
   const location = useLocation();
   console.log(props, " props");
@@ -24,6 +25,7 @@ const EditPostForm = (props) => {
     postsDispatch(editPost(post.id, title, body));
     setTitle("");
     setBody("");
+    navigate("/");
   };
 
   return (
