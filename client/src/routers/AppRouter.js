@@ -9,6 +9,7 @@ import DataProvider from "../providers/data.provider";
 import PostPage from "../components/PostPage";
 import Header from "../components/Header";
 import PostStormPage from "../components/PostStormPage";
+import PostDbTesting from "../components/PostDbTesting";
 
 const AppRouter = () => {
   return (
@@ -27,6 +28,7 @@ const AppRouter = () => {
               />
               <Route path="/post/:id" element={<PostPage />} exact={false} />
               <Route path="/storm" element={<PostStormPage />} />
+              <Route path="/dbtests" element={<PostDbTesting />} />
             </Routes>
           </BrowserRouter>
         </SocketProvider>
