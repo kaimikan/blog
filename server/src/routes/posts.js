@@ -35,4 +35,45 @@ router.post("/post", async (req, res) => {
   }
 });
 
+router.patch("/posts/:id", async (req, res) => {
+  const updates = Object.keys(req.body);
+  const allowedUpdates = ["title", "body"];
+
+  const isValidOperation = updates.every((update) =>
+    allowedUpdates.includes(update)
+  );
+
+  if (!isValidOperation) res.status(400).send({ error: "Invalid updates!" });
+
+  try {
+    const post = await Post.findOne({
+      _id: req.params.id,
+    });
+
+    if (!post) return res.status(404).send();
+
+    updates.forEach((update) => {
+      post[update] = req.body[update];
+    });
+    await post.save();
+
+    return res.send(post);
+  } catch (e) {
+    res.status(500).send();
+  }
+});
+
+router.delete("/posts/:id", async (req, res) => {
+  try {
+    const post = await Post.findOneAndDelete({
+      _id: req.params.id,
+    });
+
+    if (post) return res.send(post);
+    return res.status(404).send();
+  } catch (e) {
+    res.status(500).send();
+  }
+});
+
 module.exports = router;
