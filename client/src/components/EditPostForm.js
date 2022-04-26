@@ -20,12 +20,23 @@ const EditPostForm = (props) => {
   };
   console.log("PASSING", post);
 
-  const editPostEvent = (e) => {
+  const editPostEvent = async (e) => {
     e.preventDefault();
     postsDispatch(editPost(post.id, title, body));
-    setTitle("");
-    setBody("");
-    navigate("/");
+    let result = await fetch(`http://localhost:3000/postedit/${post.id}`, {
+      method: "post",
+      body: JSON.stringify({ title, body }),
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+      },
+    }).then(() => {
+      setTitle("");
+      setBody("");
+      navigate("/");
+    });
+    result = await result.json();
   };
 
   return (

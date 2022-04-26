@@ -10,12 +10,21 @@ const AddPostForm = () => {
   const { title, setTitle, body, setBody } = useContext(DataContext);
   const navigate = useNavigate();
 
-  const addPostEvent = (e) => {
+  const addPostEvent = async (e) => {
     e.preventDefault();
     postsDispatch(addPost(title, body));
-    setTitle("");
-    setBody("");
-    navigate("/");
+    let result = await fetch("http://localhost:3000/post", {
+      method: "post",
+      body: JSON.stringify({ title, body }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
+      setTitle("");
+      setBody("");
+      navigate("/");
+    });
+    result = await result.json();
   };
 
   return (

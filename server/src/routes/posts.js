@@ -35,7 +35,7 @@ router.post("/post", async (req, res) => {
   }
 });
 
-router.patch("/posts/:id", async (req, res) => {
+router.post("/postedit/:id", async (req, res) => {
   const updates = Object.keys(req.body);
   const allowedUpdates = ["title", "body"];
 

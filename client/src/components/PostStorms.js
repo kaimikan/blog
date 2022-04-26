@@ -8,18 +8,26 @@ function PostStorms({ socket }) {
   const { postsDispatch } = useContext(PostsContext);
   const navigate = useNavigate();
 
-  const addPostEvent = (e) => {
+  const addPostEvent = async (e) => {
     e.preventDefault();
-    let postTitle = "";
-    let postBody = "";
+    let title = "";
+    let body = "";
     for (const [msgID, msgObj] of Object.entries(messages)) {
-      postBody += msgObj.value + " ";
+      body += msgObj.value + " ";
     }
-    postTitle = postBody.split(" ")[0];
-    console.log(postTitle, postBody);
-    postsDispatch(addPost(postTitle, postBody));
-    socket.emit("deleteMessages");
-    navigate("/");
+    title = body.split(" ")[0];
+    postsDispatch(addPost(title, body));
+    let result = await fetch("http://localhost:3000/post", {
+      method: "post",
+      body: JSON.stringify({ title, body }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
+      socket.emit("deleteMessages");
+      navigate("/");
+    });
+    result = await result.json();
   };
 
   useEffect(() => {

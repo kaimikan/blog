@@ -1,24 +1,26 @@
 import { useEffect } from "react";
 
 const useLocalStorage = ({ postsState, postsDispatch }) => {
-  useEffect(() => {
-    console.log("Application loaded, local storage items added");
-    const postsLocalData = JSON.parse(
-      localStorage.getItem("postsLocalStorage")
-    );
-
-    console.log("Fetched: ", postsLocalData);
-    if (postsLocalData) {
+  async function fetchData() {
+    const postData = await fetch("http://localhost:3000/posts");
+    const posts = await postData.json();
+    console.log("Fetched: ", posts);
+    if (posts) {
       postsDispatch({
         type: "POPULATE_POSTS",
-        posts: postsLocalData,
+        posts: posts,
       });
     }
+  }
+
+  useEffect(() => {
+    console.log("Application loaded, MongoDB posts added");
+    fetchData();
   }, []);
 
   useEffect(() => {
-    console.log("Posts Updated, updating local storage in return");
-    localStorage.setItem("postsLocalStorage", JSON.stringify(postsState));
+    console.log("Posts Updated, updating MongoDB posts in return");
+    fetchData();
   }, [postsState]);
 };
 

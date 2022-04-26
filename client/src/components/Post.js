@@ -15,7 +15,7 @@ const Post = ({ post }) => {
           <Link
             className="link"
             to={"/post/" + post.id}
-            state={{ id: post.id, title: post.title, body: post.body }}
+            state={{ id: post._id, title: post.title, body: post.body }}
           >
             {post.title}
           </Link>

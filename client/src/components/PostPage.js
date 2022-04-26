@@ -25,9 +25,21 @@ const PostPage = () => {
               <div className="page-header__actions">
                 <button
                   className="button button--secondary"
-                  onClick={() => {
-                    postsDispatch(removePost(post.id));
-                    navigate("/");
+                  onClick={async () => {
+                    console.log(post);
+                    let result = await fetch(
+                      `http://localhost:3000/posts/${post.id}`,
+                      {
+                        method: "delete",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                      }
+                    );
+                    result = await result.json().then(() => {
+                      postsDispatch(removePost(post.id));
+                      navigate("/");
+                    });
                   }}
                 >
                   Remove
