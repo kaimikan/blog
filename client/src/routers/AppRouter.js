@@ -10,6 +10,8 @@ import PostPage from "../components/PostPage";
 import Header from "../components/Header";
 import PostStormPage from "../components/PostStormPage";
 import PostDbTesting from "../components/PostDbTesting";
+import Login from "../components/Login";
+import Register from "../components/Register";
 
 const AppRouter = () => {
   return (
@@ -29,6 +31,8 @@ const AppRouter = () => {
               <Route path="/post/:id" element={<PostPage />} exact={false} />
               <Route path="/storm" element={<PostStormPage />} />
               <Route path="/dbtests" element={<PostDbTesting />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
             </Routes>
           </BrowserRouter>
         </SocketProvider>

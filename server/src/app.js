@@ -9,6 +9,7 @@ require("./db/mongoose");
 require("dotenv/config");
 
 var postsRouter = require("./routes/posts");
+var usersRouter = require("./routes/users");
 
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,5 +23,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(postsRouter);
+app.use(usersRouter);
 
 module.exports = app;

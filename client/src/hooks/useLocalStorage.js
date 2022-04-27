@@ -18,10 +18,11 @@ const useLocalStorage = ({ postsState, postsDispatch }) => {
     fetchData();
   }, []);
 
-  useEffect(() => {
+  //TODO find a way to not call this all the time, maybe call it every 10 secs or soemthing
+  /* useEffect(() => {
     console.log("Posts Updated, updating MongoDB posts in return");
     fetchData();
-  }, [postsState]);
+  }, [postsState]); */
 };
 
 export { useLocalStorage as default };
